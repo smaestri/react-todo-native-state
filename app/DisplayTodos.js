@@ -1,13 +1,22 @@
-
+import React from 'react';
+import Todo from './Todo';
 
 class DisplayTodos extends React.Component{
 
+  constructor(props) {
+      super(props);
+      this.handleDelete = this.handleDelete.bind(this);
+  }
+
   componentWillReceiveProps(nextProps){
-    console.log('componentWillReceiveProps')
+    console.log('Display todos componentWillReceiveProps')
     console.log(nextProps)
     this.todos = nextProps.todosList;
   }
 
+  handleDelete(id){
+    this.props.onDeleteTodo(id)
+  }
 
   render(){
       console.log('render display todos')
@@ -15,7 +24,7 @@ class DisplayTodos extends React.Component{
     let todos;
     if(this.todos){
         todos = this.todos.map( todo => {
-        return <Todo key={todo} data={todo} />
+        return <Todo key={todo.id} id={todo.id} data={todo.value} deleteTodo={this.handleDelete} />
       })
     }
 
@@ -27,12 +36,6 @@ class DisplayTodos extends React.Component{
   }
 }
 
-function Todo (props){
-  return (
-    <tr>
-     <td>{props.data}</td>
-    </tr>
-  )
-}
+
 
 export default DisplayTodos

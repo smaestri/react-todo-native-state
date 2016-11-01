@@ -1,11 +1,13 @@
+import React from 'react';
 
 class Saisie extends React.Component{
 
   constructor(props) {
     super(props);
-    this.state = {todoValue: ''};
+    this.state = {value: ''};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange= this.handleChange.bind(this);
+    this.cpt = 0;
   }
 
   render(){
@@ -19,12 +21,17 @@ class Saisie extends React.Component{
     )
   }
 
+ // Store the todo in state
   handleChange(event) {
-       this.setState({todoValue: event.target.value});
+    console.log('set state')
+    console.log(event.target.value)
+    this.setState({value: event.target.value});
   }
 
+  //call upepr parent to store todo object
   handleSubmit() {
-    this.props.addtodo(this.state.todoValue)
+    this.props.onAddtodo({id : this.cpt, value: this.state.value});
+    this.cpt++;
   }
 
 }
