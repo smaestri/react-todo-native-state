@@ -19,8 +19,6 @@ class DisplayTodos extends React.Component{
   }
 
   render(){
-      console.log('render display todos')
-      console.log(this.todos);
     let todos;
     if(this.todos){
         todos = this.todos.map( todo => {
@@ -29,13 +27,9 @@ class DisplayTodos extends React.Component{
     }
 
     return(
-      <table>
-       <tbody>{todos}</tbody>
-      </table>
+       <ul>{todos}</ul>
     )
   }
 }
-
-
 
 export default DisplayTodos

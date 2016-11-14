@@ -21,10 +21,7 @@ class Saisie extends React.Component{
     )
   }
 
- // Store the todo in state
   handleChange(event) {
-    console.log('set state')
-    console.log(event.target.value)
     this.setState({value: event.target.value});
   }
 

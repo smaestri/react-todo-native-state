@@ -1,4 +1,5 @@
 import React from 'react';
+import TodoActions from '../actions/TodoActions';
 
 class Todo extends React.Component{
 
@@ -9,16 +10,12 @@ class Todo extends React.Component{
 
   handleDelete(e) {
      e.preventDefault();
-     console.log(this.props.id)
-     console.log('The link was clicked.');
      this.props.deleteTodo(this.props.id);
    }
 
   render() {
     return(
-    <tr>
-     <td>{this.props.id} - {this.props.data}</td><td><a href="#" onClick={this.handleDelete}>Supprimer</a></td>
-    </tr>
+    <li>{this.props.id} - {this.props.data} - <a href="#" onClick={this.handleDelete}>Supprimer</a></li>
   )
 }
 }

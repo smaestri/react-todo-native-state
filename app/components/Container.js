@@ -1,40 +1,46 @@
 import React from 'react';
 import Saisie from './Saisie';
 import DisplayTodos from './DisplayTodos';
+import TodoActions from '../actions/TodoActions';
+import TodoStore from '../stores/TodoStore';
 
 class Container extends React.Component{
 
   constructor(props) {
-    super(props);
+      super(props);
       this.state = {todosList: []};
+      this.state.todosList = TodoStore.getAll(),
       this.addTodo = this.addTodo.bind(this);
       this.deleteTodo = this.deleteTodo.bind(this);
+      this._onChange = this._onChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
     console.log('Container  componentWillReceiveProps')
   }
 
+  componentDidMount() {
+    TodoStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    TodoStore.removeChangeListener(this._onChange);
+  }
+
+  _onChange(){
+    var tab = TodoStore.getAll();
+    this.state = {};
+    this.setState({todosList: tab});
+  }
+
   addTodo(todoObj){
     console.log('ADD TODO in ARRAY');
-    let newlist = [...this.state.todosList, todoObj];
-    console.log(newlist);
-    this.setState({todosList: newlist});
+    TodoActions.create(todoObj);
   }
 
   deleteTodo(id){
-    console.log('DELETE TODO in ARRAY');
-    console.log(id)
-    console.log(this.state.todosList)
-    let newlist = this.state.todosList.filter(function( obj ) {
-        return obj.id !== id;
-    });
-
-    console.log('newList after delete')
-    console.log(newlist)
-    this.setState({todosList: newlist});
+    TodoActions.destroy(id);
   }
-
 
   render(){
     return(
