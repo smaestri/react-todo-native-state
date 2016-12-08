@@ -5,31 +5,54 @@ class DisplayTodos extends React.Component{
 
   constructor(props) {
       super(props);
-      this.handleDelete = this.handleDelete.bind(this);
+      //this.handleDelete = this.handleDelete.bind(this);
   }
 
+  /*
   componentWillReceiveProps(nextProps){
     console.log('Display todos componentWillReceiveProps')
     console.log(nextProps)
     this.todos = nextProps.todosList;
   }
-
-  handleDelete(id){
-    this.props.onDeleteTodo(id)
-  }
+  */
 
   render(){
-    let todos;
-    if(this.todos){
-        todos = this.todos.map( todo => {
-        return <Todo key={todo.id} id={todo.id} data={todo.value} deleteTodo={this.handleDelete} />
-      })
+    console.log('render todos')
+    console.log(this.props.store)
+    let todos =[];
+    if (this.props.store && this.props.store.getState() && this.props.store.getState().length){
+        todos = this.props.store.getState().map( todo => {
+        return <Todo  store={this.props.store} key={todo.id} id={todo.id} data={todo.value} />
+      });
     }
+
 
     return(
        <ul>{todos}</ul>
     )
   }
 }
+
+/*
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onTodoClick: (id) => {
+      dispatch(toggleTodo(id))
+    }
+  }
+
+}
+
+const TodoList = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DisplayTodos)
+ */
 
 export default DisplayTodos

@@ -1,5 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Container from './components/Container';
+import todoReducer from './reducers/todo'
+import { createStore } from 'redux'
 
- ReactDOM.render(<Container />, document.getElementById('app'))
+const store = createStore(todoReducer)
+
+const render =() => {
+    ReactDOM.render(<Container store={store} />, document.getElementById('app'));
+}
+store.subscribe(render);
+render();

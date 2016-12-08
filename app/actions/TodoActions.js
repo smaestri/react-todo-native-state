@@ -1,22 +1,15 @@
-import AppDispatcher from '../dispatcher/AppDispatcher';
-import TodoConstants from '../constants/TodoConstants';
-
-var TodoActions = {
-
-  create: function(todoObj) {
-    console.log('todoaction create')
-    AppDispatcher.dispatch({
-      actionType: TodoConstants.TODO_CREATE,
-      todo: todoObj
-  });
-},
-
-destroy: function(id) {
-  console.log('todoaction delete')
-  AppDispatcher.dispatch({
-    actionType: TodoConstants.TODO_DESTROY,
+let nextTodoId = 0
+export const addTodo = (text) => {
+  return {
+    type: 'ADD_TODO',
+    id: nextTodoId++,
+    text
+  }
+}
+export const deleteTodo = (id) => {
+  return {
+    type: 'DELETE_TODO',
     id: id
-  });
+  };
 }
-}
-export default TodoActions
+
