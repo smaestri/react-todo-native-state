@@ -39,7 +39,7 @@ class Container extends Component{
     return(
       <div>
         <Saisie store={store} /*onAddtodo={this.props.addTodo}*/ />
-        <DisplayTodos store={this.props.store} /*todosList={this.props.todos} onDeleteTodo={this.props.deleteTodo}*/ />
+        <DisplayTodos store={store} /*todosList={this.props.todos} onDeleteTodo={this.props.deleteTodo}*/ />
       </div>
     )
   }

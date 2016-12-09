@@ -8,17 +8,14 @@ class Todo extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
     }
 
-
-    handleDelete(e) {
-     // e.preventDefault();
+    handleDelete() {
      this.props.store.dispatch(deleteTodo(this.props.id));
     }
-
 
     render() {
         return (
             <li>{this.props.id} - {this.props.data}
-                - <a href="#" onClick={this.handleDelete()}>Supprimer</a>
+                - <a href="#" onClick={this.handleDelete}>Supprimer</a>
             </li>
         )
     }

@@ -18,11 +18,11 @@ class DisplayTodos extends React.Component{
 
   render(){
     console.log('render todos')
-    console.log(this.props.store)
+    console.log(this.props.store.getState())
     let todos =[];
     if (this.props.store && this.props.store.getState() && this.props.store.getState().length){
         todos = this.props.store.getState().map( todo => {
-        return <Todo  store={this.props.store} key={todo.id} id={todo.id} data={todo.value} />
+        return <Todo  store={this.props.store} key={todo.id} id={todo.id} data={todo.text} />
       });
     }
 

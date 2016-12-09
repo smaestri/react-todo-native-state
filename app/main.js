@@ -9,5 +9,6 @@ const store = createStore(todoReducer)
 const render =() => {
     ReactDOM.render(<Container store={store} />, document.getElementById('app'));
 }
-store.subscribe(render);
+
 render();
+store.subscribe(render);
